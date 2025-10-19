@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initialscale=1.0">
+    <title>Character Counter</title>
+
+    <style>
+
+        body {
+            background-color: rgb(3, 9, 76);
+        }
+
+        .main {
+            justify-items: center;
+            margin-top: 170px;
+        }
+
+        .main h2 {
+            text-align: center;
+            color: white;
+        }
+
+        .container {
+            width: 500px;
+            margin-left: 30px;
+        }
+
+        .container textarea {
+            background-color: rgb(198, 210, 239);
+            height: 400px;
+            border-radius: 5px;
+        }
+
+        #message {
+            width: 100%;
+            height: 100px;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        #counter {
+            font-size: 14px;
+            color: #f1ecec;
+            margin-top: 5px;
+        }
+
+        #btn {
+            padding: 10px;
+        }
+
+        .container_2 {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .warning {
+            color: red;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="main">
+
+        <div>
+            <h2>Put Your thoughts into writing!!</h2>
+        </div>
+
+        <div class="container">
+
+            <textarea id="message" maxlength="200" placeholder="Type here..."></textarea>
+
+            <div class="container_2">
+                <div id="counter">0/200 characters</div>
+                <div id="btn"><button>Submit</button></div>
+            </div>
+
+            <div id="warning" class="warning"></div>
+
+        </div>
+
+        <script>
+
+            const textarea = document.getElementById('message');
+            const counter = document.getElementById('counter');
+            const warning = document.getElementById('warning');
+
+            const maxLength = parseInt(textarea.maxLength);
+            textarea.addEventListener('input', updateCounter);
+
+            function updateCounter() {
+
+                const currentLength = textarea.value.length;
+                counter.textContent = `${currentLength}/${maxLength}characters`;
+
+                if (currentLength >= maxLength) {
+                    warning.textContent = 'Character limit exceeded!';
+                    textarea.value = textarea.value.substring(0, maxLength);
+                } else {
+                    warning.textContent = '';
+                }
+
+            }
+
+        </script>
+
+    </div>
+
+</body>
+
+</html>
